@@ -11,6 +11,14 @@ final class AppConfigTests: XCTestCase {
         XCTAssertEqual(AppConfig(info: [:]).mapStyleURL, AppConfig.fallbackStyleURL)
         XCTAssertEqual(AppConfig(info: ["FNMapStyleURL": "not a url"]).mapStyleURL, AppConfig.fallbackStyleURL)
     }
+
+    func testBackendURLsEmptyMeansNilAndOverridesWin() {
+        let info: [String: Any] = ["FNTilesURL": "", "FNValhallaURL": "http://plist:8002"]
+        let config = AppConfig(info: info, overrides: ["FNValhallaURL": "http://settings:8002"])
+        XCTAssertNil(config.tilesURL)
+        XCTAssertEqual(config.routingURL?.absoluteString, "http://settings:8002")
+        XCTAssertNil(config.searchURL)
+    }
 }
 
 final class CameraControllerTests: XCTestCase {

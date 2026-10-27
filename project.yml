@@ -22,6 +22,10 @@ targets:
     platform: iOS
     sources:
       - path: App
+      # Паки ассетов (вне git). Копируются папкой; пустая папка тоже ок.
+      - path: Assets/UserPacks
+        type: folder
+        buildPhase: resources
     dependencies:
       - package: MapLibre
     info:
@@ -35,6 +39,9 @@ targets:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
+        # Паки можно закинуть через Finder/«Файлы» в Documents/UserPacks.
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
         UIBackgroundModes:
           - location
           - audio
@@ -42,6 +49,10 @@ targets:
         NSLocationAlwaysAndWhenInUseUsageDescription: "Геопозиция в фоне нужна, чтобы вести по маршруту при выключенном экране."
         # Временный базовый стиль до появления своего PMTiles-бэкенда (этап 2).
         FNMapStyleURL: "https://tiles.openfreemap.org/styles/liberty"
+        # Свой бэкенд (Backend/). Пусто — OpenFreeMap; маршруты и поиск требуют адреса.
+        FNTilesURL: ""
+        FNValhallaURL: ""
+        FNPhotonURL: ""
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: local.fibernavi.app
