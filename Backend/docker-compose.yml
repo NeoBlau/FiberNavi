@@ -1,0 +1,39 @@
+# Бэкенд FiberNavi: маршруты (Valhalla), поиск (Photon), тайлы (PMTiles).
+# Перед первым запуском: cp .env.example .env && ./scripts/prepare_region.sh
+
+services:
+  valhalla:
+    image: ghcr.io/valhalla/valhalla-scripted:latest
+    restart: unless-stopped
+    ports:
+      - "8002:8002"
+    volumes:
+      # prepare_region.sh кладёт сюда обрезанный .osm.pbf, Valhalla строит граф при первом старте.
+      - ./data/valhalla:/custom_files
+    environment:
+      use_tiles_ignore_pbf: "True"
+      build_admins: "True"
+      build_time_zones: "True"
+      build_elevation: "False"
+      build_tar: "True"
+      server_threads: "4"
+
+  photon:
+    image: eclipse-temurin:21-jre
+    restart: unless-stopped
+    ports:
+      - "2322:2322"
+    working_dir: /photon
+    volumes:
+      # photon.jar и photon_data/ скачивает prepare_region.sh.
+      - ./data/photon:/photon
+    command: ["java", "-Xmx2g", "-jar", "photon.jar", "serve", "-listen-ip", "0.0.0.0", "-listen-port", "2322", "-cors-any"]
+
+  tiles:
+    image: protomaps/go-pmtiles:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data/tiles:/data:ro
+    command: ["serve", "/data", "--port=8080", "--cors=*", "--public-url=${PUBLIC_BASE_URL:-http://localhost}:8080"]
