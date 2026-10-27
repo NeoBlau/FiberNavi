@@ -55,3 +55,19 @@ jobs:
         run: |
           python3 -m unittest tools/pack_tool/test_pack_tool.py
           python3 -m unittest tools/voice_tagger/test_voice_tagger.py
+
+  ipa:
+    runs-on: macos-15
+    needs: build-test
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Build unsigned IPA
+        run: ./scripts/build_ipa.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FiberNavi-ipa
+          path: build/FiberNavi.ipa
+          retention-days: 14
