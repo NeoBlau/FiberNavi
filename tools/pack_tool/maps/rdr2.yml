@@ -1,0 +1,29 @@
+# Red Dead Redemption 2 → тема rdr2.
+# Выгрузка из своей копии (OpenIV / CodeX): словарь BLIPS → raw/rdr2/blips/, ui_hud.ytd → raw/rdr2/hud/,
+# пергамент/штриховку/воду вырежи кусками в raw/rdr2/tiles/{paper,hatch,water,park}_N.png,
+# аудио .awc → WAV в raw/rdr2/sfx/ и raw/rdr2/voice/arthur/.
+game: rdr2
+title: Red Dead Redemption 2
+theme: rdr2
+version: "1.0"
+assets:
+  ui.blip.saloon:       { match: blip_saloon,            origin: BLIPS }
+  ui.blip.food.grub:    { match: blip_grub,              origin: BLIPS }
+  ui.blip.shop.store:   { match: blip_shop_store,        origin: BLIPS }
+  ui.blip.shop.market:  { match: blip_shop_market_stall, origin: BLIPS }
+  ui.blip.doctor:       { match: blip_shop_doctor,       origin: BLIPS }
+  ui.blip.sheriff:      { match: blip_ambient_sheriff,   origin: BLIPS }
+  ui.blip.stable:       { match: [blip_stable, blip_shop_horse], origin: BLIPS }
+  ui.waypoint:          { match: blip_code_waypoint,     origin: BLIPS }
+  hud.compass_rose:     { match: radar_compass_ink,      origin: ui_hud.ytd }
+  hud.minimap_frame:    { match: [radar_regular_ink, map_inner_ring], origin: ui_hud.ytd }
+  hud.player_arrow:     { match: [blip_player, compass_arrow], origin: ui_hud.ytd }
+  map.tile.paper:       { match: "tiles/paper*",  origin: ui textures }
+  map.tile.hatch:       { match: "tiles/hatch*",  origin: minimap_tiles.rpf }
+  map.tile.water:       { match: "tiles/water*",  origin: minimap_tiles.rpf }
+  map.tile.park:        { match: "tiles/park*",   origin: minimap_tiles.rpf }
+  sfx.map.open:         { match: "sfx/map_open*", origin: x64/audio/sfx }
+  sfx.waypoint.set:     { match: "sfx/waypoint*", origin: x64/audio/sfx }
+  sfx.arrival:          { match: "sfx/arriv*",    origin: x64/audio/sfx }
+  font.heading:         { match: "font/*",        source: licensed, origin: "свободный шрифт (Rye / IM Fell English, OFL)" }
+  voice.arthur:         { match: "voice/arthur/*", origin: x64/audio/sfx }

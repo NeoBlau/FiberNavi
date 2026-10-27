@@ -1,0 +1,44 @@
+# GTA V → тема gta5.
+# Выгрузка из своей копии (OpenIV):
+#   update/update.rpf/x64/patch/data/cdimages/scaleform_minimap.rpf → minimap.ytd → Export all → raw/gta_v/blips/
+#   update/update.rpf/x64/textures/graphics.ytd → radarmasklg → raw/gta_v/hud/
+#   x64b.rpf/data/cdimages/scaleform_generic.rpf → minimap_sea_*.ytd → отбери куски в raw/gta_v/tiles/{water,park,road,urban}_N.png
+#   x64/audio/sfx/*.rpf → .awc → Export as WAV → raw/gta_v/sfx/ и raw/gta_v/voice/{franklin,michael,trevor}/
+#   Стрелка игрока в V рисуется scaleform'ом (minimap.gfx) — отдельной текстуры нет, будет заглушка.
+game: gta_v
+title: GTA V
+theme: gta5
+version: "1.0"
+assets:
+  ui.blip.food.burger:     { match: radar_burger_shot,      origin: minimap.ytd }
+  ui.blip.food.chicken:    { match: radar_cluckin_bell,     origin: minimap.ytd }
+  ui.blip.food.restaurant: { match: radar_restaurant,       origin: minimap.ytd }
+  ui.blip.bank:            { match: radar_financier_strand, origin: minimap.ytd }
+  ui.blip.parking:         { match: radar_illegal_parking,  origin: minimap.ytd }
+  ui.blip.hospital:        { match: radar_hospital,         origin: minimap.ytd }
+  ui.blip.pharmacy:        { match: radar_hospital,         origin: "minimap.ytd (замена: своей нет)" }
+  ui.blip.shop:            { match: radar_store,            origin: minimap.ytd }
+  ui.blip.clothes:         { match: radar_clothes_store,    origin: minimap.ytd }
+  ui.blip.police:          { match: radar_police_station,   origin: minimap.ytd }
+  ui.blip.repair:          { match: [radar_car_mod_shop, radar_garage], origin: minimap.ytd }
+  ui.blip.transit.metro:   { match: radar_station,          origin: minimap.ytd }
+  ui.blip.transit.train:   { match: radar_cable_car,        origin: minimap.ytd }
+  ui.blip.fuel:            { absent: true }                 # в ванили заправки меткой не помечаются
+  ui.waypoint:             { match: radar_waypoint,         origin: minimap.ytd }
+  hud.player_arrow:        { absent: true }                 # scaleform, текстуры нет
+  hud.minimap_frame:       { match: radarmasklg,            origin: graphics.ytd }
+  map.tile.water:          { match: "tiles/water*",         origin: scaleform_generic.rpf/minimap_sea }
+  map.tile.park:           { match: "tiles/park*",          origin: scaleform_generic.rpf/minimap_sea }
+  map.tile.road:           { match: "tiles/road*",          origin: scaleform_generic.rpf/minimap_sea }
+  map.tile.urban:          { match: "tiles/urban*",         origin: scaleform_generic.rpf/minimap_sea }
+  sfx.ui.select:           { match: "sfx/select*",          origin: x64/audio/sfx }
+  sfx.ui.confirm:          { match: "sfx/confirm*",         origin: x64/audio/sfx }
+  sfx.mission_complete:    { match: "sfx/mission*",         origin: x64/audio/sfx }
+  sfx.waypoint.set:        { match: "sfx/waypoint*",        origin: x64/audio/sfx }
+  sfx.map.open:            { match: "sfx/map_open*",        origin: x64/audio/sfx }
+  sfx.arrival:             { match: "sfx/arriv*",           origin: x64/audio/sfx }
+  sfx.route.recalc:        { match: "sfx/recalc*",          origin: x64/audio/sfx }
+  font.heading:            { match: "font/pricedown*", source: licensed, origin: "Pricedown, Typodermic (personal use)" }
+  voice.franklin:          { match: "voice/franklin/*",     origin: x64/audio/sfx/S_MISC.rpf }
+  voice.michael:           { match: "voice/michael/*",      origin: x64/audio/sfx/S_MISC.rpf }
+  voice.trevor:            { match: "voice/trevor/*",       origin: x64/audio/sfx/S_MISC.rpf }

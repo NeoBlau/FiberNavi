@@ -34,3 +34,24 @@ jobs:
             -destination "id=${{ steps.sim.outputs.udid }}" \
             CODE_SIGNING_ALLOWED=NO \
             | xcbeautify || exit 1
+
+  tools:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install pillow pyyaml
+      - name: Styles are up to date
+        run: python3 tools/style_builder/build_styles.py --check
+      - name: Validate MapLibre styles
+        run: for f in App/Themes/*/*.json; do npx --yes -p @maplibre/maplibre-gl-style-spec@26.4.4 gl-style-validate "$f"; done
+      - name: Tool tests
+        run: |
+          python3 -m unittest tools/pack_tool/test_pack_tool.py
+          python3 -m unittest tools/voice_tagger/test_voice_tagger.py

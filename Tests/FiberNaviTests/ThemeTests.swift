@@ -118,6 +118,20 @@ final class UserPackTests: XCTestCase {
         }
     }
 
+    func testPackToolManifestDecodes() throws {
+        // Формат tools/pack_tool: строковая версия, список assets с происхождением.
+        let json = #"""
+        {"pack":"gta_sa","game":"GTA San Andreas","version":"1.0","theme":"sanAndreas",
+         "assets":[{"key":"ui.blip.hospital","file":"ui/blip/hospital.png","source":"own","origin":"models/hud.txd:radar_hostpital"}],
+         "blips":{"blip.hospital":"ui/blip/hospital.png"},"sounds":{"ui.waypoint":"sfx/waypoint_set.wav"},
+         "voice":{"characters":{"cj":"voice/cj/voice_manifest.json"}}}
+        """#
+        let manifest = try JSONDecoder().decode(PackManifest.self, from: Data(json.utf8))
+        XCTAssertEqual(manifest.files["blip.hospital"], "ui/blip/hospital.png")
+        XCTAssertEqual(manifest.files["ui.waypoint"], "sfx/waypoint_set.wav")
+        XCTAssertEqual(manifest.voice?.characters?["cj"], "voice/cj/voice_manifest.json")
+    }
+
     func testExampleManifestDecodes() throws {
         // Тот же формат, что в Assets/UserPacks/manifest.example.json (копируется в бандл).
         let url = try XCTUnwrap(Bundle.main.url(forResource: "manifest.example", withExtension: "json", subdirectory: "UserPacks"))

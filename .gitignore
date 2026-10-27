@@ -22,3 +22,5 @@ __pycache__/
 
 .DS_Store
 Backend/.env
+# Выгрузки из игр для pack_tool
+raw/

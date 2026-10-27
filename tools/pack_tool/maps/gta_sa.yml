@@ -1,0 +1,36 @@
+# GTA San Andreas → тема sanAndreas.
+# Выгрузка из своей копии:
+#   models/gta3.img → hud.txd: Alci's IMG Editor, потом Magic.TXD → экспорт всех текстур в PNG/DDS в raw/gta_sa/hud/
+#   models/gta3.img → radar00..radar124.txd: отбери 5–10 тайлов и переименуй в raw/gta_sa/tiles/{water,park,road,urban}_N.png
+#   audio/SFX/GENRL, SCRIPT, SPC_PA: Alci's SAAT GUI FrontEnd → WAV в raw/gta_sa/sfx/ и raw/gta_sa/voice/cj/
+#   Pricedown (Ray Larabie, бесплатно для личного использования) → raw/gta_sa/font/pricedown.ttf
+game: gta_sa
+title: GTA San Andreas
+theme: sanAndreas
+version: "1.0"
+assets:
+  ui.blip.food.burger:   { match: radar_burgerShot, origin: models/hud.txd }
+  ui.blip.food.chicken:  { match: radar_chicken,    origin: models/hud.txd }
+  ui.blip.food.pizza:    { match: radar_pizza,      origin: models/hud.txd }
+  ui.blip.bank:          { match: radar_cash,       origin: models/hud.txd }
+  ui.blip.garage:        { match: radar_modGarage,  origin: models/hud.txd }
+  ui.blip.hospital:      { match: radar_hostpital,  origin: models/hud.txd }   # опечатка Rockstar
+  ui.blip.police:        { match: radar_police,     origin: models/hud.txd }
+  ui.blip.shop:          { match: radar_ammugun,    origin: models/hud.txd }
+  ui.blip.clothes:       { match: radar_tshirt,     origin: models/hud.txd }
+  ui.blip.repair:        { match: radar_spray,      origin: models/hud.txd }
+  ui.blip.fuel:          { absent: true }                                    # своей иконки заправки в SA нет
+  ui.waypoint:           { match: radar_waypoint,   origin: models/hud.txd }
+  hud.player_arrow:      { match: arrow,            origin: models/hud.txd }
+  hud.north:             { match: radar_north,      origin: models/hud.txd }
+  hud.minimap_frame:     { match: radardisc,        origin: models/hud.txd }
+  map.tile.water:        { match: "tiles/water*",   origin: models/radarNN.txd }
+  map.tile.park:         { match: "tiles/park*",    origin: models/radarNN.txd }
+  map.tile.road:         { match: "tiles/road*",    origin: models/radarNN.txd }
+  map.tile.urban:        { match: "tiles/urban*",   origin: models/radarNN.txd }
+  sfx.ui.select:         { match: "sfx/select*",    origin: audio/SFX/SCRIPT bank 145 }
+  sfx.waypoint.set:      { match: "sfx/blip*",      origin: audio/SFX/SCRIPT bank 218 }
+  sfx.ui.confirm:        { match: "sfx/confirm*",   origin: audio/SFX/GENRL banks 53-54 }
+  sfx.mission_complete:  { match: "sfx/mission*",   origin: audio/SFX }
+  font.heading:          { match: "font/pricedown*", source: licensed, origin: "Pricedown, Typodermic (personal use)" }
+  voice.cj:              { match: "voice/cj/*",     origin: audio/SFX/SPC_PA }

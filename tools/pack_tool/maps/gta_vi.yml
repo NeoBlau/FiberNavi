@@ -1,0 +1,9 @@
+# GTA VI (концепт) → тема gta6concept. Игры нет: только свои скриншоты официальных трейлеров
+# (пауза на кадре с картой/HUD → скриншот) в raw/gta_vi/ref/. Используются как эталон палитры.
+game: gta_vi
+title: GTA VI (concept)
+theme: gta6concept
+version: "1.0"
+assets:
+  ref.frame:     { match: "ref/*", multi: true, origin: "official trailer screenshot" }
+  font.heading:  { match: "font/*", source: licensed, origin: "свободный шрифт" }

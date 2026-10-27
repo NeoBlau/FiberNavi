@@ -7,8 +7,8 @@ struct PackManifest: Decodable {
         var characters: [String: String]?
     }
 
+    /// Версию не читаем: pack_tool пишет строку, старый образец — число.
     var theme: String?
-    var version: Int?
     var map: [String: String]?
     var hud: [String: String]?
     var blips: [String: String]?
