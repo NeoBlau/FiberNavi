@@ -1,0 +1,19 @@
+{
+  "_comment": "Палитра в духе радара GTA San Andreas: тёплая земля, тёмные дороги, плоские цвета.",
+  "colors": {
+    "land": "#9b9b80", "residential": "#a3a184", "commercial": "#a8a68a", "industrial": "#8f8e78",
+    "park": "#6f8a4f", "wood": "#5e7a43", "grass": "#7c9455", "sand": "#c7b47c",
+    "hospital_area": "#a59a8c", "school_area": "#a19e86",
+    "water": "#4f6f93", "water_outline": "#41607f",
+    "building": "#8a8a72", "building_outline": "#7a7a64", "building_top": "#94947c", "building_glow": "#a0a088",
+    "boundary": "#5a5a4a",
+    "road_motorway": "#2b2b2b", "road_trunk": "#333333", "road_primary": "#3b3b3b", "road_secondary": "#474747",
+    "road_minor": "#595959", "road_service": "#6a6a62", "road_casing": "#7f7f6c", "road_major_casing": "#1a1a1a",
+    "path": "#6e6e60", "rail": "#4a4a42", "subway": "#4a4a42",
+    "label": "#ffffff", "label_major": "#ffffff", "label_minor": "#f2f2e6", "label_halo": "#202020",
+    "road_label": "#ffffff", "water_label": "#e2ecf7", "shield_text": "#ffffff", "shield_bg": "#202020"
+  },
+  "night": {"lightness": 0.5, "saturation": 0.75, "tint": "#1a2340",
+            "overrides": {"label": "#ffffff", "road_label": "#f0f0f0", "label_halo": "#000000", "road_motorway": "#5a5a5a", "road_trunk": "#535353", "road_primary": "#4c4c4c"}},
+  "options": {"casing_ratio": 0.2, "halo_width": 1.8, "blip_size": 0.55, "city_transform": "uppercase"}
+}

@@ -1,0 +1,19 @@
+{
+  "_comment": "Концепт: тропический мегаполис на закате, неон, 3D-здания.",
+  "colors": {
+    "land": "#1d1b33", "residential": "#221f3b", "commercial": "#262243", "industrial": "#1f1d36",
+    "park": "#1e3b3e", "wood": "#1b3438", "grass": "#21403f", "sand": "#4a3a4a",
+    "hospital_area": "#2a2140", "school_area": "#262240",
+    "water": "#0f3a5c", "water_outline": "#1fb5d6",
+    "building": "#2c2850", "building_outline": "#3a3466", "building_top": "#5a3d7a", "building_glow": "#ff5fa8",
+    "boundary": "#ff7ac4",
+    "road_motorway": "#ff8fc7", "road_trunk": "#ffb0d6", "road_primary": "#e6d6ff", "road_secondary": "#a99fd6",
+    "road_minor": "#6e66a0", "road_service": "#4d4880", "road_casing": "#15132a", "road_major_casing": "#3a1440",
+    "path": "#4d4880", "rail": "#5ad8f0", "subway": "#5ad8f0",
+    "label": "#f4f0ff", "label_major": "#ffffff", "label_minor": "#c8c0ec", "label_halo": "#120f24",
+    "road_label": "#ffffff", "water_label": "#8fe6ff", "shield_text": "#120f24", "shield_bg": "#ffb0d6"
+  },
+  "night": {"lightness": 0.8, "saturation": 1.1, "tint": "#05030f",
+            "overrides": {"label_halo": "#05030f"}},
+  "options": {"buildings_3d": true, "casing_ratio": 0.5, "blip_size": 0.5, "halo_width": 1.2}
+}

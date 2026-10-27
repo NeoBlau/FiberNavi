@@ -1,0 +1,19 @@
+{
+  "_comment": "Палитра в духе радара GTA V. Можно перезаписать экстрактором из своих текстур.",
+  "colors": {
+    "land": "#3a3f44", "residential": "#41474d", "commercial": "#464c52", "industrial": "#3d4247",
+    "park": "#3f5a3a", "wood": "#37503a", "grass": "#425c3e", "sand": "#6b6450",
+    "hospital_area": "#4a4448", "school_area": "#44484a",
+    "water": "#3c6a86", "water_outline": "#4f7f9b",
+    "building": "#4c5257", "building_outline": "#555b61", "building_top": "#5a6066", "building_glow": "#6a7076",
+    "boundary": "#8a8f94",
+    "road_motorway": "#e2e2e2", "road_trunk": "#d4d4d4", "road_primary": "#c4c4c4", "road_secondary": "#a9abad",
+    "road_minor": "#8b8e91", "road_service": "#6f7276", "road_casing": "#2e3236", "road_major_casing": "#24282b",
+    "path": "#7a7d80", "rail": "#6f7378", "subway": "#9aa0a6",
+    "label": "#f0f0f0", "label_major": "#ffffff", "label_minor": "#c8cbce", "label_halo": "#1c1f22",
+    "road_label": "#f2f2f2", "water_label": "#b8d8ec", "shield_text": "#1c1f22", "shield_bg": "#f0f0f0"
+  },
+  "night": {"lightness": 0.7, "saturation": 0.9, "tint": "#101828",
+            "overrides": {"label": "#e6e6e6", "label_major": "#ffffff", "road_label": "#e6e6e6", "label_halo": "#0d0f12"}},
+  "options": {"casing_ratio": 0.3, "blip_size": 0.5}
+}

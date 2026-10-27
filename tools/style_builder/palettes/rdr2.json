@@ -1,0 +1,22 @@
+{
+  "_comment": "Палитра в духе карты RDR2: пергамент, чернила, штриховка. Текстуры подставляются из пака (pattern.*).",
+  "colors": {
+    "land": "#d8c49a", "residential": "#cfba8e", "commercial": "#cbb488", "industrial": "#c4ad82",
+    "park": "#b9b483", "wood": "#a9a874", "grass": "#c2bb8a", "sand": "#ddc99b",
+    "hospital_area": "#ccb58b", "school_area": "#cdb88d",
+    "water": "#a9b6a2", "water_outline": "#5f5644",
+    "building": "#c2aa7e", "building_outline": "#8a7652", "building_top": "#c8b084", "building_glow": "#cfb88c",
+    "boundary": "#7a2e22",
+    "road_motorway": "#4a3a28", "road_trunk": "#54432f", "road_primary": "#5e4c36", "road_secondary": "#6e5b42",
+    "road_minor": "#7d6a50", "road_service": "#8d7a5e", "road_casing": "#c8b289", "road_major_casing": "#d6c095",
+    "path": "#7d6a50", "rail": "#3d3122", "subway": "#5e4c36",
+    "label": "#2b2015", "label_major": "#1e160e", "label_minor": "#3d3022", "label_halo": "#e2d1a8",
+    "road_label": "#2b2015", "water_label": "#3a4a52", "shield_text": "#e2d1a8", "shield_bg": "#4a3a28"
+  },
+  "night": {"lightness": 0.62, "saturation": 0.85, "tint": "#2a1c10",
+            "overrides": {"label": "#f0e2c0", "label_major": "#fff2d0", "label_minor": "#e0d0ae", "label_halo": "#2a1f14", "road_label": "#f0e2c0", "water_label": "#cad8d0", "road_motorway": "#efe0bc", "road_trunk": "#e2d2ae", "road_primary": "#d4c4a0", "road_secondary": "#c2b28e", "road_minor": "#ac9c7a"}},
+  "options": {"casing_ratio": 0.0, "halo_width": 1.4, "blip_size": 0.55,
+              "land_pattern": "pattern.paper", "land_pattern_opacity": 0.55,
+              "water_pattern": "pattern.hatch", "water_pattern_opacity": 0.45,
+              "park_pattern": "pattern.hatch", "water_outline": true}
+}
