@@ -1,0 +1,23 @@
+# Xcode (проект генерируется XcodeGen из project.yml)
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
+build/
+*.ipa
+App/Resources/Info.plist
+
+# Файлы из игр: никогда не попадают в git
+Assets/UserPacks/*
+!Assets/UserPacks/README.md
+!Assets/UserPacks/manifest.example.json
+
+# Backend data
+Backend/data/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+.DS_Store

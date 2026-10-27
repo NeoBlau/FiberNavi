@@ -1,0 +1,46 @@
+{
+  "theme": "gta5",
+  "version": 1,
+  "_comment": "Скопируй в Assets/UserPacks/<тема>/manifest.json. Пути относительно папки темы. Отсутствующий файл заменяется заглушкой.",
+  "map": {
+    "map.world": "map/world.png",
+    "map.tex.road": "map/tex/road.png",
+    "map.tex.water": "map/tex/water.png",
+    "map.tex.grass": "map/tex/grass.png",
+    "map.tex.sand": "map/tex/sand.png",
+    "map.tex.paper": "map/tex/paper.png",
+    "map.tex.hatch": "map/tex/hatch.png"
+  },
+  "hud": {
+    "hud.minimap_frame": "hud/minimap_frame.png",
+    "hud.player_arrow": "hud/player_arrow.png",
+    "hud.compass": "hud/compass.png"
+  },
+  "blips": {
+    "blip.gas_station": "blip/gas_station.png",
+    "blip.food": "blip/food.png",
+    "blip.atm": "blip/atm.png",
+    "blip.parking": "blip/parking.png",
+    "blip.hospital": "blip/hospital.png",
+    "blip.waypoint": "blip/waypoint.svg"
+  },
+  "fonts": {
+    "font.title": "fonts/title.ttf",
+    "font.digits": "fonts/digits.otf",
+    "font.body": "fonts/body.ttf"
+  },
+  "sounds": {
+    "ui.mission_start": "sfx/mission_start.wav",
+    "ui.waypoint": "sfx/waypoint.wav",
+    "ui.arrived": "sfx/arrived.ogg",
+    "ui.reroute": "sfx/reroute.mp3"
+  },
+  "voice": {
+    "_comment": "Каталог реплик персонажей. voice_manifest.json генерирует tools/voice_tagger.",
+    "characters": {
+      "franklin": "voice/franklin/voice_manifest.json",
+      "michael": "voice/michael/voice_manifest.json",
+      "trevor": "voice/trevor/voice_manifest.json"
+    }
+  }
+}
