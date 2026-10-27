@@ -44,9 +44,12 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install deps
+        # ffmpeg из pip (статическая сборка): apt-get update на раннерах иногда виснет на минуты.
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-          pip install pillow pyyaml
+          pip install pillow pyyaml imageio-ffmpeg
+          mkdir -p "$HOME/bin"
+          ln -sf "$(python3 -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())')" "$HOME/bin/ffmpeg"
+          echo "$HOME/bin" >> "$GITHUB_PATH"
       - name: Styles are up to date
         run: python3 tools/style_builder/build_styles.py --check
       - name: Validate MapLibre styles
