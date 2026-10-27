@@ -34,18 +34,28 @@ struct RadarFrame: View {
                         .stroke(tokens.palette.minimapRim, lineWidth: tokens.minimapRimWidth)
                 }
                 if tokens.minimapShowsNorth {
-                    let r = min(geo.size.width, geo.size.height) / 2
-                    let angle = Angle.degrees(-mapHeading - 90).radians
-                    Text("N")
-                        .font(fonts.font(.title, size: 15))
-                        .foregroundStyle(tokens.palette.panelText)
-                        .padding(4)
-                        .background(Circle().fill(tokens.palette.minimapRim))
-                        .position(x: geo.size.width / 2 + cos(angle) * r,
-                                  y: geo.size.height / 2 + sin(angle) * r)
+                    northLabel
+                        .position(northPosition(in: geo.size))
                 }
             }
         }
         .allowsHitTesting(false)
+    }
+
+    private var northLabel: some View {
+        Text("N")
+            .font(fonts.font(.title, size: 15))
+            .foregroundStyle(tokens.palette.panelText)
+            .padding(4)
+            .background(Circle().fill(tokens.palette.minimapRim))
+    }
+
+    /// Точка на ободе, куда указывает север при текущем повороте карты.
+    private func northPosition(in size: CGSize) -> CGPoint {
+        let radius = Double(min(size.width, size.height)) / 2
+        let angle = (-mapHeading - 90) * Double.pi / 180
+        let x = Double(size.width) / 2 + cos(angle) * radius
+        let y = Double(size.height) / 2 + sin(angle) * radius
+        return CGPoint(x: x, y: y)
     }
 }

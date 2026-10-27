@@ -16,19 +16,7 @@ struct RootView: View {
             Color.black.ignoresSafeArea()
 
             GeometryReader { geo in
-                let radar = mapMode == .radar
-                let side = min(geo.size.width, geo.size.height) * 0.62
-                map
-                    .frame(width: radar ? side : geo.size.width, height: radar ? side : geo.size.height)
-                    .clipShape(radar ? AnyShape(MinimapShape(kind: tokens.minimapShape)) : AnyShape(Rectangle()))
-                    .overlay {
-                        if radar {
-                            RadarFrame(tokens: tokens, frameImage: themes.pack.image("hud.minimap_frame"), fonts: themes.fonts)
-                        }
-                    }
-                    .padding(radar ? 20 : 0)
-                    .frame(width: geo.size.width, height: geo.size.height,
-                           alignment: radar ? tokens.minimapAlignment : .center)
+                mapContainer(size: geo.size, tokens: tokens)
             }
             .ignoresSafeArea(edges: mapMode == .full ? .all : [])
 
@@ -47,6 +35,27 @@ struct RootView: View {
         }
         .sheet(isPresented: $showThemePicker) {
             ThemePickerView()
+        }
+    }
+
+    @ViewBuilder
+    private func mapContainer(size: CGSize, tokens: ThemeTokens) -> some View {
+        let radar = mapMode == .radar
+        let side: CGFloat = min(size.width, size.height) * 0.62
+        let shape: AnyShape = radar ? AnyShape(MinimapShape(kind: tokens.minimapShape)) : AnyShape(Rectangle())
+        let alignment: Alignment = radar ? tokens.minimapAlignment : .center
+        map
+            .frame(width: radar ? side : size.width, height: radar ? side : size.height)
+            .clipShape(shape)
+            .overlay { radarRim(visible: radar, tokens: tokens) }
+            .padding(radar ? 20 : 0)
+            .frame(width: size.width, height: size.height, alignment: alignment)
+    }
+
+    @ViewBuilder
+    private func radarRim(visible: Bool, tokens: ThemeTokens) -> some View {
+        if visible {
+            RadarFrame(tokens: tokens, frameImage: themes.pack.image("hud.minimap_frame"), fonts: themes.fonts)
         }
     }
 
