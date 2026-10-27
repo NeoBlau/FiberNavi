@@ -8,6 +8,8 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     private(set) var authorization: CLAuthorizationStatus
     private(set) var lastLocation: CLLocation?
     private(set) var heading: CLHeading?
+    /// Каждый принятый фикс (для NavigationSession).
+    var onLocation: ((CLLocation) -> Void)?
 
     private let manager = CLLocationManager()
     private let log = Logger(subsystem: "local.fibernavi", category: "location")
@@ -67,6 +69,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         // Отбрасываем невалидные и слишком неточные фиксы.
         guard let location = locations.last(where: { $0.horizontalAccuracy >= 0 && $0.horizontalAccuracy < 100 }) else { return }
         lastLocation = location
+        onLocation?(location)
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {

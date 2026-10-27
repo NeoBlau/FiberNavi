@@ -98,6 +98,7 @@ final class ThemeManager {
             images[entry.key] = pack.image(entry.key)
                 ?? StubArt.blip(entry, tint: tokens.blipTint, background: tokens.blipBackground)
         }
+        images[RouteLayers.puckImage] = pack.image("hud.player_arrow") ?? StubArt.playerArrow(color: tokens.palette.route)
         images["pattern.paper"] = pack.image("map.tex.paper") ?? StubArt.paper()
         images["pattern.hatch"] = pack.image("map.tex.hatch") ?? StubArt.hatch()
         images["pattern.water"] = pack.image("map.tex.water") ?? StubArt.hatch(color: UIColor(white: 1, alpha: 0.25))

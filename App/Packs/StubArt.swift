@@ -106,8 +106,8 @@ enum StubArt {
     }
 }
 
-/// Детерминированный генератор, чтобы заглушки не менялись между запусками.
-struct SplitMix64 {
+/// Детерминированный генератор: заглушки не меняются между запусками, тесты PhraseBank воспроизводимы.
+struct SplitMix64: RandomNumberGenerator {
     private var state: UInt64
     init(seed: UInt64) { state = seed }
 

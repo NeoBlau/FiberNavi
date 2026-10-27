@@ -70,7 +70,12 @@ struct ThemeTokens {
     var blipTint: UIColor
     var blipBackground: UIColor
     /// Персонажи темы: id папки в `voice/` и подпись.
-    var characters: [(id: String, name: String)]
+    var characters: [VoiceCharacter]
+}
+
+struct VoiceCharacter: Identifiable, Hashable {
+    let id: String
+    let name: String
 }
 
 extension Color {

@@ -28,6 +28,6 @@ extension ThemeTokens {
         cornerRadius: 2,
         blipTint: UIColor(hex: 0xFFFFFF),
         blipBackground: UIColor(hex: 0x202020),
-        characters: [(id: "cj", name: "Си-Джей")]
+        characters: [VoiceCharacter(id: "cj", name: "Си-Джей")]
     )
 }
