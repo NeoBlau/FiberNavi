@@ -12,7 +12,7 @@
 
 ```sh
 cd Backend
-cp .env.example .env        # впиши PHOTON_DUMP_URL и актуальную дату PROTOMAPS_BUILD_URL
+cp .env.example .env        # впиши PHOTON_DUMP_URL
 ./scripts/prepare_region.sh # скачивание и обрезка данных, ~2–6 ГБ
 docker compose up -d        # первый старт Valhalla строит граф: 10–30 минут
 ./scripts/smoke_test.sh     # проверка сервисов и времени маршрута
@@ -26,6 +26,6 @@ docker compose up -d        # первый старт Valhalla строит гр
 
 ## Атрибуция
 
-Данные © OpenStreetMap contributors (ODbL). Тайлы: Protomaps basemap. Приложение показывает атрибуцию на карте.
+Данные © OpenStreetMap contributors (ODbL). Тайлы: Planetiler, схема OpenMapTiles. Приложение показывает атрибуцию на карте.
 
 Valhalla на телефоне (полный офлайн) — отдельный этап 7a, см. `docs/PLAN.md`. Этот бэкенд остаётся источником данных и запасным вариантом.

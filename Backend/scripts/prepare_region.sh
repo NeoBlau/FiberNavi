@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Готовит данные региона для docker-compose: OSM для Valhalla, PMTiles, базу Photon.
+# Готовит данные региона для docker-compose: OSM для Valhalla, PMTiles (Planetiler), базу Photon.
 # Повторный запуск пропускает то, что уже скачано. FORCE=1 перекачивает всё.
 #
-# Нужны: curl, tar, bzip2. Опционально: osmium (обрезка PBF по bbox), pmtiles (иначе через docker).
+# Нужны: curl, tar, bzip2, docker. Опционально: osmium (обрезка PBF по bbox).
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -45,17 +45,16 @@ if need "$REGION_PBF"; then
   rm -rf "$DATA/valhalla/valhalla_tiles" "$DATA/valhalla/valhalla_tiles.tar"
 fi
 
-# --- 2. PMTiles ----------------------------------------------------------------
+# --- 2. PMTiles (схема OpenMapTiles, как у OpenFreeMap) ---------------------------
+# Planetiler строит тайлы прямо из обрезанного PBF. Стили приложения рассчитаны на эту схему.
 TILES="$DATA/tiles/$REGION_NAME.pmtiles"
 if need "$TILES"; then
-  log "Вырезаю PMTiles из $PROTOMAPS_BUILD_URL (maxzoom $PMTILES_MAXZOOM)"
-  check_url "$PROTOMAPS_BUILD_URL"
-  args=(extract "$PROTOMAPS_BUILD_URL" "$REGION_NAME.pmtiles" "--bbox=$REGION_BBOX" "--maxzoom=$PMTILES_MAXZOOM")
-  if command -v pmtiles >/dev/null; then
-    (cd "$DATA/tiles" && pmtiles "${args[@]}")
-  else
-    docker run --rm -v "$PWD/$DATA/tiles:/data" -w /data protomaps/go-pmtiles:latest "${args[@]}"
-  fi
+  log "Строю PMTiles через Planetiler (maxzoom $PMTILES_MAXZOOM)"
+  docker run --rm -v "$PWD/$DATA:/data" "$PLANETILER_IMAGE" \
+    "--osm-path=/data/valhalla/$REGION_NAME.osm.pbf" \
+    "--output=/data/tiles/$REGION_NAME.pmtiles" \
+    "--bounds=$REGION_BBOX" "--maxzoom=$PMTILES_MAXZOOM" \
+    --download --force
 fi
 
 # --- 3. Photon -----------------------------------------------------------------
